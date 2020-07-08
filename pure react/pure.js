@@ -7,6 +7,9 @@ const App =() =>{
 };
 
 ReactDOM.render(
-    React.createElemnt(App),
-    document.getElementById("root")
+React.createElemnt(App),
+document.getElementById("root")
 );  
+
+
+//nmp i -D prettier
