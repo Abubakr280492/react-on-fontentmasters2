@@ -1,5 +1,5 @@
-import React, {useState}from 'react';
-import {ANIMALS} from '@frontendmasters/pet';
+import React, {useState, useEffect}from 'react';
+import pet, {ANIMALS} from '@frontendmasters/pet';
 import useDropdown from './useDropdown';
  
 
@@ -13,6 +13,19 @@ const SearchParams = () => {
     
     // all hooks begins with use 
 
+    //scheduling   show immidiately  
+    useEffect(() =>{
+     //   pet.breds("dog").then(console.log, console.error);
+        setBreads([]);
+        setBreed("");
+        pet.breeds(animal).then(({breads}) =>{
+        const breedStrings = breeds.map(({name}) => name );
+        setBreeds(breedStrings);
+        } , console.error);
+        // it returns promise 
+    });
+
+    
     return(
         <div className="search-params">
             <h1>{location}</h1>
