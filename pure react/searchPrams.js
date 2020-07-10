@@ -9,21 +9,24 @@ const SearchParams = () => {
     const [location, setLocation] = useState("Seattle, WA");
     const [breeds, setBreeds] = useState([]);
     const [animal, AnimalDropdown] = useDropdown ("Animal", "dog", ANIMALS);
-    const [bread, BreedDropdown] = useDropdown("Breed", "", breeds);
+    const [breed, BreedDropdown, setBreed ] = useDropdown("Breed", "", breeds);
     
     // all hooks begins with use 
 
     //scheduling   show immidiately  
     useEffect(() =>{
      //   pet.breds("dog").then(console.log, console.error);
-        setBreads([]);
+        setBreeds([]);
         setBreed("");
+
+
         pet.breeds(animal).then(({breads}) =>{
         const breedStrings = breeds.map(({name}) => name );
         setBreeds(breedStrings);
         } , console.error);
         // it returns promise 
-    });
+   
+    }, [animal, setBreed, setBreeds]);
 
     
     return(
