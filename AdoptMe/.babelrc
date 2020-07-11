@@ -1,0 +1,4 @@
+{
+    "presets" : ["@babel/present-react","@babel/present-env"],
+    "plugins":["@babel/present-proposal-class-properties"]
+}
