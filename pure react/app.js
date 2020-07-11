@@ -39,7 +39,7 @@
 
 import React from "react";
 import{render} from "react-dom";
-import {Router} from "@reach/router";
+import {Router , Link} from "@reach/router";
 import SearchParams from "./searchPrams";
 import Details from "./Details";
 
@@ -48,7 +48,11 @@ const App =()=>{
     return(
         <React.StrictMode>
         <div>
-            <h1 id="something-imoirtant">Adopt Me!</h1>
+            <header>
+            <link to="/">
+                Adopt Me!
+            </link>
+            </header>
             <Router>
                 <SearchParams/>
                 <Details path="/details/:id" />
