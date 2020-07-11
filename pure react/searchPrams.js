@@ -10,6 +10,20 @@ const SearchParams = () => {
     const [breeds, setBreeds] = useState([]);
     const [animal, AnimalDropdown] = useDropdown ("Animal", "dog", ANIMALS);
     const [breed, BreedDropdown, setBreed ] = useDropdown("Breed", "", breeds);
+    cosnt [PermissionStatus, setPets] = useState([]);
+
+    async function requestPets(){   //gurantee return a promise 
+        const {animals} = await pet.animals({
+            location,
+            breed,
+            type: animal
+        })
+//han
+
+
+        setPets(animals || []);
+
+    }
     
     // all hooks begins with use 
 
@@ -31,6 +45,11 @@ const SearchParams = () => {
     
     return(
         <div className="search-params">
+            <form onSubmit = {(e) =>{
+                e.preventDefault(); 
+                requestPets();
+            }
+            }></form>
             <h1>{location}</h1>
             <form>
                 <label htmlFor="location">
