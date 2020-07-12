@@ -2,6 +2,7 @@ import React from "react";
 import pet from '@frontendmaster/pet';
 import Carousel from './Carousel';
 import ErrorBoundary from "./ErrorBoundary";
+import ThemeContext from './ThemeContext';
 
 
 class Details extends React.Component{
@@ -38,7 +39,11 @@ class Details extends React.Component{
                 <div >
                     <h1>{name}</h1>
                     <h2>{`${animal} - ${breed} - ${location}`}</h2>
-                    <button>Adopt Me!</button>
+                    <ThemeContext.Consumer>
+                        {([theme]) => (
+                            <button style={{backgroundColor: theme }}>Adopt Me!</button>
+                        )}
+                    </ThemeContext.Consumer>
                     <p>{descriptio}</p>
                 </div>
             </div>
@@ -49,10 +54,12 @@ class Details extends React.Component{
 export  default  function     DetailsWithErrorBoundary(props){
     return(
         <ErrorBoundary>
-            <Details/>
+            <Details {...props}/> 
         </ErrorBoundary>
     )
 }
+
+//react very explicit
 
 //cant use hooks remember 
 

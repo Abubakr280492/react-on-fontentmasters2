@@ -37,29 +37,35 @@
 // );  
 
 
-import React from "react";
+import React, {useState} from "react";
 import{render} from "react-dom";
 import {Router , Link} from "@reach/router";
 import SearchParams from "./searchPrams";
 import Details from "./Details";
-
+import ThemeContext from './ThemeContext'
 
 const App =()=>{
+    
+    const themeHook = useState('darkblue');
+
     return(
-        <React.StrictMode>
-        <div>
-            <header>
-            <link to="/">
-                Adopt Me!
-            </link>
-            </header>
-            <Router>
-                <SearchParams/>
-                <Details path="/details/:id" />
-            </Router>
-        </div>
-        </React.StrictMode>
+    
+    <React.StrictMode>
+        <ThemeContext.Provider value={themeHook}>
+            <div>
+                <header>
+                 <link to="/">
+                    Adopt Me!
+                 </link>
+                </header>
+                <Router>
+                    <SearchParams/>
+                    <Details path="/details/:id" />
+                </Router>
+            </div>
+        </ThemeContext.Provider>
+    </React.StrictMode>
     );
 };
 
-export default SearchParams; 
+export default SearchParams; s

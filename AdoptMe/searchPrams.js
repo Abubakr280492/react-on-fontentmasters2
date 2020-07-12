@@ -1,8 +1,8 @@
-import React, {useState, useEffect}from 'react';
+import React, {useState, useEffect, useContext}from 'react';
 import pet, {ANIMALS} from '@frontendmasters/pet';
 import useDropdown from './useDropdown';
 import Results from './Results'; 
-
+import ThemeContext from './ThemeContext';
 const SearchParams = () => {
 
     // you cant use hooks inside if 
@@ -11,6 +11,9 @@ const SearchParams = () => {
     const [animal, AnimalDropdown] = useDropdown ("Animal", "dog", ANIMALS);
     const [breed, BreedDropdown, setBreed ] = useDropdown("Breed", "", breeds);
     cosnt [PermissionStatus, setPets] = useState([]);
+    cosnt [theme, setTheme] = useContext(ThemeContext);
+
+
 
     async function requestPets(){   //gurantee return a promise 
         const {animals} = await pet.animals({
@@ -62,7 +65,19 @@ const SearchParams = () => {
                 {/* sherd generic class  */}
                <AnimalDropdown/>
                <BreedDropdown/>
-                <button>Submit</button>
+               <label htmlFor="theme">Theme
+                <select value={theme}
+                onChange= {e=> setTheme(e.target.value)}
+                onBlur={e=>setTheme(e.target.value)}
+                 >
+                     <option value="peru">Peru</option>
+                     <option value="darkblue">Dark Blue</option>
+                     <option value="modiumorchid">Medium Orchid</option>
+                     <option value="cahrtreuse">Chartreuse</option>
+
+                </select>
+               </label>
+                <button style={{backgroundColor: theme}}>Submist</button>
             </form>
             <Results pets ={pets  } />
 
